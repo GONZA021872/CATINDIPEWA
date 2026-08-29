@@ -1,0 +1,4000 @@
+ <!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+  <title>Catalogo CO D MAR </title>
+
+<style>
+
+/* ========================= */
+/*          CSS CODMAR        */
+/* ========================= */
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin:0;
+    padding:20px;
+    background:#f5f5f5;
+}
+
+/* MARCA CODMAR */
+
+.marca{
+    text-align:center;
+    margin-top:20px;
+}
+
+.logo-icono{
+    font-size:48px;
+    margin-bottom:5px;
+}
+
+.marca h1{
+    font-size:80px;
+    font-weight:900;
+    margin:0;
+    letter-spacing:4px;
+    color:#111;
+}
+
+.marca p{
+    font-size: 40px;          /* Más grande */
+    font-weight: bold;
+    color: #555;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;      /* Más separación entre letras */
+    line-height: 1.4;         /* Hace que la letra se vea más alta */
+    text-transform: uppercase;/* Todo en mayúsculas, más profesional */
+}
+
+
+/* BUSCADOR */
+
+#buscar{
+    width:90%;
+    max-width:700px;
+    display:block;
+    margin:20px auto;
+    padding:18px 20px;
+    font-size:28px;
+    border:2px solid #ccc;
+    border-radius:12px;
+    outline:none;
+}
+/* CATALOGO */
+
+#catalogo{
+    text-align:center;
+}
+
+
+.producto{
+    border:1px solid #ccc;
+    background:white;
+    border-radius:10px;
+    padding:8px;
+    margin:8px;
+    width:160px;
+    display:inline-block;
+    text-align:center;
+    vertical-align:top;
+    box-shadow:0 2px 5px rgba(0,0,0,.15);
+}
+
+.producto img{
+    width:110px;
+    height:110px;
+    object-fit:contain;
+
+}
+
+.producto h3{
+    font-size:14px;
+    margin:6px 0;
+    min-height:36px;
+}
+
+.producto p{
+    font-size:18px;
+    color:#d32f2f;
+    font-weight:bold;
+    margin:6px 0;
+}
+
+
+
+
+/* BOTON AGREGAR CARRITO */
+
+.boton-carrito{
+    display:block;
+    width:110%;
+    margin-top:6px;
+    padding:12px;
+    background:#0d6efd;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    font-size:18px;
+    cursor:pointer;
+}
+
+
+
+/* BOTON CARRITO PRINCIPAL */
+
+#verCarrito{
+    display:block;
+    width:40%;
+    margin:25px auto;
+    height:100px;
+    background:#ff9800;
+    color:white;
+    border:none;
+    border-radius:15px;
+    font-size:30px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+#verCarrito:hover{
+    transform:scale(1.05);
+    background:#f57c00;
+}
+
+/* VENTANA DEL CARRITO */
+
+#carritoVentana{
+    display:none;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:420px;
+    max-height:500px;
+    overflow-y:auto;
+    background:#fff;
+    border-radius:10px;
+    padding:20px;
+    box-shadow:0 0 20px rgba(0,0,0,.4);
+    z-index:9999;
+}
+
+
+
+#listaCarrito{
+    margin-top:15px;
+}
+
+
+
+#totalCarrito{
+    margin-top:15px;
+    font-size:20px;
+    font-weight:bold;
+    color:#d32f2f;
+}
+
+
+
+/* BOTONES DEL CARRITO */
+
+.botonesCarrito{
+    margin-top:20px;
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+}
+
+
+.botonesCarrito button{
+    flex:1;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+
+
+#vaciarCarrito{
+    background:#d32f2f;
+    color:white;
+}
+
+
+
+#enviarWhatsApp{
+    background:#25D366;
+    color:white;
+}
+
+
+
+#cerrarCarrito{
+    background:#666;
+    color:white;
+}
+
+
+
+#carritoVentana button{
+    margin:5px;
+}
+
+#volverCatalogo{
+    display:none;
+    width:60%;
+    max-width:500px;
+    margin:20px auto;
+    padding:18px 25px;
+    background:#0d6efd;
+    color:white;
+    border:none;
+    border-radius:12px;
+    font-size:24px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+
+#volverCatalogo:hover{
+    background:#0b5ed7;
+}
+
+
+
+/* ===== MODAL PRODUCTO ===== */
+
+.modal{
+    display:none;
+    position:fixed;
+    z-index:9999;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.7);
+}
+
+.modal-contenido{
+
+    background:white;
+
+    width:90%;
+    max-width:420px;
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:15px;
+
+    padding:20px;
+
+    text-align:center;
+
+    animation:aparecer .25s;
+}
+
+.modal-contenido img{
+
+    width:420px;
+
+    height:420px;
+
+    object-fit:contain;
+
+}
+
+#modalNombre{
+
+    font-size:24px;
+    margin:15px 0;
+
+}
+
+#modalPrecio{
+
+    font-size:26px;
+
+    color:#e53935;
+
+    font-weight:bold;
+
+}
+
+#agregarModal{
+
+    background:#28a745;
+
+    color:white;
+
+    border:none;
+
+    padding:15px 25px;
+
+    border-radius:10px;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+}
+
+#cerrarModal{
+
+    position:absolute;
+    right:15px;
+    top:10px;
+    font-size:35px;
+    cursor:pointer;
+
+}
+
+
+
+/* CATEGORÍAS */
+
+.categorias{
+
+    display:flex;
+    flex-wrap:nowrap;
+    justify-content:flex-start;
+    gap:12px;
+    width:100%;
+    margin:20px auto;
+    padding:0 10px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    white-space:nowrap;
+    scroll-behavior:smooth;
+    -webkit-overflow-scrolling:touch;
+
+}
+
+.categorias::-webkit-scrollbar{
+    display:none;
+
+}
+
+.categorias button{
+
+    flex:0 0 auto;
+    min-width:200px;
+    height:85px;
+    padding:0 30px;
+    font-size:20px;
+    border-radius:12px;
+    background:#0d6efd;
+    color:white;
+    border:none;
+    font-weight:bold;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+}
+
+
+
+/* ========================= */
+/*      PÁGINA CARRITO        */
+/* ========================= */
+
+.categorias button:hover{
+
+    background:#0b5ed7;
+
+}
+
+
+
+/* CELULAR */
+
+@media (max-width:768px){
+
+ .categorias{
+
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    gap:12px;
+    width:100%;
+    margin:20px auto;
+    padding:25px 10px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    white-space:nowrap;
+    -webkit-overflow-scrolling:touch;
+
+}
+
+
+    .categorias::-webkit-scrollbar{
+
+        display:none;
+
+    }
+
+
+    .categorias button{
+
+    flex:0 0 auto;
+    min-width:200px;
+    height:60px;
+    padding:0 30px;
+    font-size:20px;
+    border-radius:12px;
+    background:#0d6efd;
+    color:white;
+    border:none;
+    font-weight:bold;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+}
+
+#abrirAdministracion{
+    flex:0 0 auto;
+}
+
+}
+
+
+
+/* ========================= */
+/*      PÁGINA CARRITO        */
+/* ========================= */
+
+#paginaCarrito{
+
+    display:none;
+    width:95%;
+    max-width:900px;
+    margin:20px auto;
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.2);
+
+}
+
+.productoCarrito{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+    border-bottom:1px solid #ddd;
+    padding:15px 0;
+
+}
+
+.productoCarrito img{
+
+    width:90px;
+    height:90px;
+    object-fit:contain;
+
+}
+
+.infoProducto{
+
+    flex:1;
+
+}
+
+.infoProducto h3{
+
+    margin:0;
+    font-size:20px;
+
+}
+
+.infoProducto p{
+
+    margin:8px 0;
+    color:#d32f2f;
+    font-weight:bold;
+    font-size:20px;
+
+}
+
+
+.filaCarrito{
+
+    display:grid;
+    grid-template-columns:140px 1fr 100px 120px 70px;
+    align-items:center;
+    gap:10px;
+    border-bottom:1px solid #ddd;
+    padding:12px 0;
+
+}
+
+.colImagen{
+
+    width:70px;
+    flex-shrink:0;
+
+}
+
+.colImagen img{
+
+    width:60px;
+    height:60px;
+    object-fit:contain;
+    display:block;
+
+}
+
+.colCantidad{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+
+}
+
+.colCantidad span{
+    font-size:22px;
+    font-weight:bold;
+}
+
+
+.colCantidad button{
+    width:40px;
+    height:40px;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.colProducto{
+    font-weight:bold;
+    font-size:20px;
+}
+
+
+.colPrecio,
+.colImporte{
+    text-align:center;
+    font-weight:bold;
+    font-size:20px;
+}
+.colImporte{
+
+    color:#d32f2f;
+
+}
+
+.colEliminar{
+
+    text-align:center;
+
+}
+
+.colEliminar button{
+    background:#d32f2f;
+    color:white;
+    border:none;
+    border-radius:8px;
+    padding:10px 14px;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.encabezadoCarrito{
+
+    display:grid;
+    grid-template-columns:140px 1fr 100px 120px 70px;
+    gap:10px;
+    font-weight:bold;
+    background:#0d6efd;
+    color:white;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:10px;
+    text-align:center;
+
+}
+
+    /* CARRITO EN CELULAR */
+
+#carritoVentana{
+
+    width:90%;
+    max-width:500px;
+    max-height:80vh;
+    padding:25px;
+    border-radius:15px;
+
+}
+
+
+#carritoVentana h2{
+
+    font-size:32px;
+
+}
+
+
+#listaCarrito{
+
+    font-size:22px;
+
+}
+
+
+#totalCarrito{
+
+    font-size:28px;
+
+}
+
+
+.botonesCarrito{
+
+    flex-direction:column;
+    gap:15px;
+
+}
+
+
+.botonesCarrito button{
+
+    width:100%;
+    padding:18px;
+    font-size:22px;
+
+}
+
+
+
+
+</style>
+
+</head>
+
+<body>
+
+     <div class="marca">
+    
+     <h1 onclick="activarAdministrador()" style="cursor:pointer;">
+        CO D MAR
+     </h1>
+
+    <p>Distribuidora Farmacéutica y Comercializadora</p>
+</div>
+   
+
+
+<!-- Categorías -->
+
+<div class="categorias">
+
+    <button onclick="mostrarMedicamentos()">
+        💊 Medicamentos
+    </button>
+
+    <button onclick="mostrarMaterial()">
+        🩹 Material de Curación
+    </button>
+
+    <button onclick="mostrarPerfumeria()">
+    🧴 Perfumería
+    </button>
+
+
+    <button onclick="mostrarMiscelaneos()">
+    📦 Misceláneos
+    </button>
+
+    <button onclick="mostrarSimilares()">
+        🔄 Similares
+    </button>
+
+    <button onclick="mostrarPatente()">
+        💎 Patente
+    </button>
+
+    <button id="abrirAdministracion" onclick="abrirAdministracion()" style="display:none;">
+    ⚙️ Administración
+</button>
+
+
+   </div>
+
+
+
+<!-- Buscador de productos -->
+
+<input 
+type="text"
+id="buscar"
+placeholder="🔍 Buscar producto...">
+
+
+<button id="volverCatalogo">
+    ← Volver al catálogo
+</button>
+
+
+<!-- Botón para abrir carrito -->
+
+<button id="verCarrito" onclick="verCarrito()">
+
+🛒 Carrito (0)
+
+</button>
+
+
+<!-- Aquí aparecerán los productos del catálogo -->
+
+<div id="catalogo"></div>
+
+
+<!-- ========================= -->
+<!--       VENTANA CARRITO      -->
+<!-- ========================= -->
+
+
+<div id="carritoVentana" style="display:none;">
+
+
+    <h2>🛒 Mi carrito</h2>
+
+
+    <div id="listaCarrito"></div>
+
+
+    <h3 id="totalCarrito"></h3>
+
+
+
+    <div class="botonesCarrito">
+
+
+        <button 
+        id="vaciarCarrito"
+        onclick="vaciarCarrito()">
+
+            🗑 Vaciar carrito
+
+        </button>
+
+
+
+        <button
+        id="enviarWhatsApp"
+        onclick="enviarWhatsApp()">
+
+            📲 Enviar pedido
+
+        </button>
+
+
+
+        <button
+        id="cerrarCarrito"
+        onclick="cerrarCarrito()">
+
+            ❌ Cerrar
+
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+
+
+<!-- ========================= -->
+<!--       PÁGINA CLIENTES     -->
+<!-- ========================= -->
+
+<div id="paginaClientes" style="display:none;">
+
+    <h2 style="text-align:center; font-size:32px;">
+        👥 Mis Clientes
+    </h2>
+
+    <div style="text-align:center; margin-top:30px;">
+
+        <button id="agregarCliente">
+            ➕ Agregar cliente
+        </button>
+
+        <button id="volverCarritoClientes">
+            ⬅ Volver al carrito
+        </button>
+
+    </div>
+
+    <!-- FORMULARIO AGREGAR CLIENTE -->
+
+    <div id="formularioCliente" style="display:none; margin:30px auto; max-width:500px;">
+
+        <h3 style="text-align:center;">
+            ➕ Agregar cliente
+        </h3>
+
+        <label>
+            Nombre del cliente
+        </label>
+
+        <input
+            type="text"
+            id="nombreCliente"
+            placeholder="Escribe el nombre"
+            style="width:100%; padding:12px; margin:8px 0 15px;">
+
+        <label>
+            📱 Número de WhatsApp
+        </label>
+
+        <input
+            type="tel"
+            id="whatsappCliente"
+            placeholder="Ejemplo: 2281234567"
+            style="width:100%; padding:12px; margin:8px 0 15px;">
+
+        <div style="text-align:center;">
+
+            <button id="guardarCliente">
+                💾 Guardar
+            </button>
+
+            <button id="cancelarCliente">
+                ❌ Cancelar
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- LISTA DE CLIENTES -->
+
+    <div id="listaClientes"></div>
+
+</div>
+
+<!-- ========================= -->
+<!--    PÁGINA ADMINISTRACIÓN  -->
+<!-- ========================= -->
+
+<div id="paginaAdministracion" style="display:none;">
+
+    <h2 style="text-align:center; font-size:32px;">
+        ⚙️ Administración CODMAR
+    </h2>
+
+    <div style="text-align:center; margin-top:30px;">
+
+        <button id="botonClientesAdmin" onclick="abrirClientesAdmin()">
+            👥 Clientes
+        </button>
+
+        <button id="botonAgregarProductoAdmin" onclick="abrirAgregarProductoAdmin()">
+            ➕ Agregar producto
+        </button>
+
+        <button id="botonVentasAdmin" onclick="abrirVentasAdmin()">
+            🧾 Ventas
+        </button>
+
+        
+        <button onclick="abrirCarritoDesdeAdministracion()">
+          🛒 Carrito
+        </button>
+
+
+        <button id="volverCatalogoAdmin" onclick="volverDesdeAdministracion()">
+            ⬅ Volver al catálogo
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!--       PÁGINA VENTAS       -->
+<!-- ========================= -->
+
+<div id="paginaVentas" style="display:none;">
+
+    <div style="
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:20px;
+        margin-bottom:25px;
+    ">
+
+        <h2 style="
+            margin:0;
+            font-size:32px;
+        ">
+            🧾 Ventas
+        </h2>
+
+        <button
+            onclick="volverDesdeVentas()"
+            style="
+                padding:10px 18px;
+                font-size:16px;
+                cursor:pointer;
+            ">
+            ⬅ Administración
+        </button>
+
+    </div>
+
+    <div id="listaVentas">
+    </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!--     AGREGAR PRODUCTO      -->
+<!-- ========================= -->
+
+<div id="paginaAgregarProducto" style="display:none;">
+
+    <h2 style="text-align:center; font-size:32px;">
+        ➕ Agregar producto
+    </h2>
+
+    <div style="max-width:500px; margin:30px auto;">
+
+        <label>Nombre del producto</label>
+
+        <input
+            type="text"
+            id="nuevoProductoNombre"
+            placeholder="Ejemplo: Aliviox"
+            style="width:100%; padding:12px; margin:8px 0 15px;"
+        >
+
+
+        <label>Presentación</label>
+
+        <input
+            type="text"
+            id="nuevoProductoPresentacion"
+            placeholder="Ejemplo: 20 tabletas"
+            style="width:100%; padding:12px; margin:8px 0 15px;"
+        >
+
+
+        <label>Precio</label>
+
+        <input
+            type="number"
+            id="nuevoProductoPrecio"
+            placeholder="Ejemplo: 98"
+            step="0.01"
+            style="width:100%; padding:12px; margin:8px 0 15px;"
+        >
+
+
+        <label>Categoría</label>
+
+        <select
+            id="nuevoProductoCategoria"
+            style="width:100%; padding:12px; margin:8px 0 15px;"
+        >
+
+            <option value="">Selecciona una categoría</option>
+
+            <option value="MEDICAMENTOS POPULARES">
+                Medicamentos
+            </option>
+
+            <option value="Material de Curación">
+                Material de Curación
+            </option>
+
+            <option value="Perfumería">
+                Perfumería
+            </option>
+
+            <option value="Misceláneos">
+                Misceláneos
+            </option>
+
+            <option value="Similares">
+                Similares
+            </option>
+
+            <option value="Patente">
+                Patente
+            </option>
+
+        </select>
+
+
+        <label>Imagen del producto</label>
+
+        <input
+            type="file"
+            id="nuevoProductoImagen"
+            accept="image/*"
+            style="width:100%; margin:8px 0 20px;"
+        >
+
+
+        <label>Imagen en línea</label>
+
+        <input
+            type="text"
+            id="nuevoProductoImagenURL"
+            placeholder="Pega aquí la dirección de la imagen"
+            style="width:100%; padding:12px; margin:8px 0 15px;"
+        >
+
+        <div
+            id="vistaPreviaImagen"
+            style="text-align:center; margin-bottom:20px;"
+        ></div>
+
+
+        <div style="text-align:center;">
+
+            <button onclick="guardarNuevoProducto()">
+                💾 Guardar producto
+            </button>
+
+            <button onclick="cancelarAgregarProducto()">
+                ❌ Cancelar
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!--       PÁGINA CARRITO      -->
+<!-- ========================= -->
+
+<div id="paginaCarrito" style="display:none;">
+
+    <h2 style="text-align:center; font-size:32px;">
+        🛒 Mi carrito
+    </h2>
+
+    <div
+        id="clienteSeleccionadoCarrito"
+        style="
+            text-align:center;
+            font-size:22px;
+            font-weight:bold;
+            margin:15px 0;
+        ">
+    </div>
+
+    <div id="listaCarritoPagina"></div>
+
+    <h2
+        id="totalPagina"
+        style="
+            text-align:right;
+            color:#d32f2f;
+            margin-top:20px;
+        ">
+    </h2>
+
+    <div
+        style="
+            display:flex;
+            justify-content:center;
+            gap:15px;
+            flex-wrap:wrap;
+            margin-top:25px;
+        ">
+
+        <button
+            id="enviarWhatsAppPagina"
+            style="
+                background:#25D366;
+                color:white;
+                border:none;
+                border-radius:8px;
+                padding:15px 20px;
+                font-size:18px;
+                font-weight:bold;
+                cursor:pointer;
+            ">
+            📲 Enviar pedido
+        </button>
+
+        <button
+            id="vaciarCarritoPagina"
+            style="
+                background:#d32f2f;
+                color:white;
+                border:none;
+                border-radius:8px;
+                padding:15px 20px;
+                font-size:18px;
+                font-weight:bold;
+                cursor:pointer;
+            ">
+            🗑 Vaciar carrito
+        </button>
+
+        <button
+            id="volverCatalogoPagina"
+            style="
+                background:#0d6efd;
+                color:white;
+                border:none;
+                border-radius:8px;
+                padding:15px 20px;
+                font-size:18px;
+                font-weight:bold;
+                cursor:pointer;
+            ">
+            ⬅ Volver al catálogo
+        </button>
+
+        <button
+            onclick="abrirAdministracionDesdeCarrito()"
+            style="
+                background:#6f42c1;
+                color:white;
+                border:none;
+                border-radius:8px;
+                padding:15px 20px;
+                font-size:18px;
+                font-weight:bold;
+                cursor:pointer;
+            ">
+            ⚙️ Administración
+        </button>
+
+    </div>
+
+</div>
+
+
+
+
+
+<script>
+
+
+
+// =========================
+//       JAVASCRIPT CODMAR
+// =========================
+
+
+
+// =========================
+//     MODO ADMINISTRADOR
+// =========================
+
+
+
+// =========================
+//     MODO ADMINISTRADOR
+// =========================
+
+
+let modoAdministrador =
+    localStorage.getItem("modoAdministradorCODMAR") === "activo";
+
+if(modoAdministrador){
+
+    document.getElementById("abrirAdministracion").style.display = "flex";
+
+}
+
+
+function activarAdministrador(){
+
+    let clave = prompt("Contraseña de administrador:");
+
+    if(clave === "CODMAR2026"){
+
+        localStorage.setItem(
+            "modoAdministradorCODMAR",
+            "activo"
+        );
+
+        location.reload();
+
+    }else{
+
+        alert("Contraseña incorrecta.");
+
+    }
+
+}
+
+
+
+
+// =========================
+//       CARRITO
+// =========================
+
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+
+// Actualiza el número del botón carrito
+
+function actualizarCarrito(){
+
+    document.getElementById("verCarrito").innerHTML =
+    "🛒 Carrito (" + carrito.length + ")";
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+}
+
+
+
+// Agregar productos
+
+function agregarCarrito(nombre, precio, imagen){
+
+
+    precio = parseFloat(precio.replace("$","").trim());
+
+
+    let productoExistente = carrito.find(function(producto){
+
+        return producto.nombre === nombre;
+
+    });
+
+
+
+    if(productoExistente){
+
+
+        productoExistente.cantidad++;
+
+
+    }else{
+
+
+     carrito.push({
+
+    nombre:nombre,
+    precio:precio,
+    cantidad:1,
+    imagen:imagen
+
+
+});
+
+    }
+
+
+
+    actualizarCarrito();
+
+
+
+    alert(
+        nombre +
+        " agregado al carrito.\n\nProductos en el carrito: "
+        + carrito.length
+    );
+
+
+}
+
+
+
+// Mostrar carrito
+
+function verCarrito(){
+
+    // Ocultar catálogo
+
+    document.getElementById("catalogo").style.display = "none";
+
+    // Ocultar botón del carrito
+
+    document.getElementById("verCarrito").style.display = "none";
+
+    // Mostrar página del carrito
+
+    document.getElementById("paginaCarrito").style.display = "block";
+
+
+    document.querySelector(".categorias").style.display = "none";
+
+    document.getElementById("buscar").style.display = "none";
+
+
+   // Mostrar cliente seleccionado
+   let clienteSeleccionado =
+    JSON.parse(localStorage.getItem("clienteSeleccionadoCODMAR"));
+
+   let cajaCliente =
+   document.getElementById("clienteSeleccionadoCarrito");
+
+  if(cajaCliente){
+
+  if(clienteSeleccionado){
+
+    cajaCliente.innerHTML =
+        "👤 Cliente: " + clienteSeleccionado.nombre;
+
+}else{
+
+    cajaCliente.innerHTML =
+        "👤 Ningún cliente seleccionado";
+
+}
+
+}
+
+    let contenido = "";
+    let total = 0;
+
+    carrito.forEach(function(producto){
+
+        contenido += `
+
+<div class="filaCarrito">
+
+    <div class="colCantidad">
+        <button onclick="disminuirCantidad('${producto.nombre}')">➖</button>
+        <span>${producto.cantidad}</span>
+        <button onclick="aumentarCantidad('${producto.nombre}')">➕</button>
+    </div>
+
+    <div class="colProducto">
+        ${producto.nombre}
+    </div>
+
+    <div class="colPrecio">
+        $${producto.precio.toFixed(2)}
+    </div>
+
+    <div class="colImporte">
+        $${(producto.precio * producto.cantidad).toFixed(2)}
+    </div>
+
+    <div class="colEliminar">
+        <button onclick="eliminarProducto('${producto.nombre}')">🗑</button>
+    </div>
+
+</div>
+
+`;
+
+        total += producto.precio * producto.cantidad;
+
+    });
+
+    if(carrito.length === 0){
+
+        document.getElementById("listaCarritoPagina").innerHTML =
+        "<h3 style='text-align:center;'>🛒 El carrito está vacío</h3>";
+
+        document.getElementById("totalPagina").innerHTML = "";
+
+    }else{
+
+        document.getElementById("listaCarritoPagina").innerHTML =
+
+        `
+
+<div class="encabezadoCarrito">
+
+    <div>Cantidad</div>
+    <div>Producto</div>
+    <div>Precio</div>
+    <div>Importe</div>
+    <div></div>
+
+</div>
+
+` + contenido;
+
+        document.getElementById("totalPagina").innerHTML =
+        "TOTAL: $" + total.toLocaleString("es-MX",{
+            minimumFractionDigits:2,
+            maximumFractionDigits:2
+        });
+
+    }
+
+}
+
+
+
+
+// =========================
+// BOTÓN ADMINISTRACIÓN DESDE CARRITO
+// =========================
+
+function abrirAdministracionDesdeCarrito(){
+
+    document.getElementById("paginaCarrito").style.display = "none";
+
+    document.getElementById("paginaAdministracion").style.display = "block";
+
+}
+
+
+
+
+
+// Aumentar cantidad
+
+function aumentarCantidad(nombre){
+
+
+    let producto = carrito.find(p => p.nombre === nombre);
+
+
+    producto.cantidad++;
+
+
+    verCarrito();
+
+    actualizarCarrito();
+
+
+}
+
+
+
+// Disminuir cantidad
+
+function disminuirCantidad(nombre){
+
+
+    let producto = carrito.find(p => p.nombre === nombre);
+
+
+
+    if(producto.cantidad > 1){
+
+
+        producto.cantidad--;
+
+
+    }else{
+
+
+        eliminarProducto(nombre);
+
+
+    }
+
+
+
+    verCarrito();
+
+    actualizarCarrito();
+
+
+}
+
+
+
+
+// Eliminar producto
+
+function eliminarProducto(nombre){
+
+
+    carrito = carrito.filter(p => p.nombre !== nombre);
+
+
+
+    verCarrito();
+
+    actualizarCarrito();
+
+
+}
+
+
+// Vaciar carrito
+
+function vaciarCarrito(){
+
+    carrito = [];
+
+   localStorage.removeItem("clienteSeleccionadoCODMAR");
+
+    actualizarCarrito();
+
+    verCarrito();
+
+}
+
+
+// Cerrar carrito
+
+function cerrarCarrito(){
+
+
+    document.getElementById("carritoVentana").style.display="none";
+
+
+}
+
+// =========================
+//   ABRIR ADMINISTRACIÓN
+// =========================
+
+function abrirAdministracion(){
+
+    // Ocultar barra de categorías
+    document.querySelector(".categorias").style.display = "none";
+
+    // Ocultar barra de búsqueda
+    document.getElementById("buscar").style.display = "none";
+
+    // Ocultar botón carrito
+    document.getElementById("verCarrito").style.display = "none";
+
+    // Ocultar catálogo
+    document.getElementById("catalogo").style.display = "none";
+
+    // Ocultar carrito
+    document.getElementById("paginaCarrito").style.display = "none";
+
+    // Mostrar administración
+    document.getElementById("paginaAdministracion").style.display = "block";
+
+}
+
+
+// =========================
+//   ABRIR CARRITO DESDE ADMINISTRACIÓN
+// =========================
+
+function abrirCarritoDesdeAdministracion(){
+
+    // Ocultar Administración
+    document.getElementById("paginaAdministracion").style.display = "none";
+
+    // Ocultar Clientes
+    document.getElementById("paginaClientes").style.display = "none";
+
+    // Ocultar Agregar Producto
+    document.getElementById("paginaAgregarProducto").style.display = "none";
+
+    // Ocultar Ventas
+    document.getElementById("paginaVentas").style.display = "none";
+
+    // Mostrar Carrito
+    document.getElementById("paginaCarrito").style.display = "block";
+
+    // Mantener ocultos los elementos del catálogo
+    document.querySelector(".categorias").style.display = "none";
+
+    document.getElementById("buscar").style.display = "none";
+
+    document.getElementById("verCarrito").style.display = "none";
+
+    // Actualizar carrito y cliente seleccionado
+    verCarrito();
+
+}
+
+
+
+// =========================
+//   FUNCIONES ADMINISTRACIÓN
+// =========================
+
+function abrirClientesAdmin(){
+
+    // Ocultar Administración
+    document.getElementById("paginaAdministracion").style.display = "none";
+
+    // Ocultar catálogo
+    document.getElementById("catalogo").style.display = "none";
+
+    // Ocultar carrito
+    document.getElementById("paginaCarrito").style.display = "none";
+
+    // Ocultar barra de categorías
+    document.querySelector(".categorias").style.display = "none";
+
+    // Ocultar barra de búsqueda
+    document.getElementById("buscar").style.display = "none";
+
+    // Mostrar Clientes
+    document.getElementById("paginaClientes").style.display = "block";
+
+    // Mostrar lista de clientes
+    mostrarClientes();
+
+}
+
+
+// =========================
+// VOLVER AL CARRITO DESDE CLIENTES
+// =========================
+
+document.getElementById("volverCarritoClientes").onclick = function(){
+
+   document.getElementById("paginaClientes").style.display = "none";
+
+   document.getElementById("paginaCarrito").style.display = "block";
+
+   verCarrito();
+
+};
+
+
+
+
+
+// =========================
+//   ABRIR AGREGAR PRODUCTO
+// =========================
+
+function abrirAgregarProductoAdmin(){
+
+    document.getElementById("paginaAdministracion").style.display = "none";
+
+    document.getElementById("paginaAgregarProducto").style.display = "block";
+
+    // Ocultar barra de categorías
+    document.querySelector(".categorias").style.display = "none";
+
+    // Ocultar barra de búsqueda
+    document.getElementById("buscar").style.display = "none";
+
+}
+
+function abrirVentasAdmin(){
+
+    document.getElementById("paginaAdministracion").style.display = "none";
+
+    document.getElementById("paginaCarrito").style.display = "none";
+
+    // Ocultar catálogo
+    document.getElementById("catalogo").style.display = "none";
+
+    // Ocultar barra de categorías
+    document.querySelector(".categorias").style.display = "none";
+
+    // Ocultar barra de búsqueda del catálogo
+    document.getElementById("buscar").style.display = "none";
+
+    // Ocultar botón carrito
+    document.getElementById("verCarrito").style.display = "none";
+
+    // Mostrar ventas
+    document.getElementById("paginaVentas").style.display = "block";
+
+    mostrarVentas();
+
+}
+
+
+function mostrarVentas(){
+
+    let ventas =
+        JSON.parse(localStorage.getItem("ventasCODMAR")) || [];
+
+    let lista =
+        document.getElementById("listaVentas");
+
+    lista.innerHTML = "";
+
+    if(ventas.length === 0){
+
+        lista.innerHTML = `
+            <p style="
+                text-align:center;
+                font-size:20px;
+                margin-top:40px;
+            ">
+                🧾 No hay ventas registradas todavía.
+            </p>
+        `;
+
+        return;
+    }
+
+    ventas.forEach(function(venta, indice){
+
+        let productosHTML = "";
+
+        if(venta.productos && venta.productos.length > 0){
+
+            productosHTML = `
+                <div style="
+                    margin-top:15px;
+                    overflow-x:auto;
+                ">
+
+                    <table style="
+                        width:100%;
+                        border-collapse:collapse;
+                    ">
+
+                        <tr style="
+                            background:#1976d2;
+                            color:white;
+                        ">
+
+                            <th style="padding:10px; text-align:left;">
+                                Cant.
+                            </th>
+
+                            <th style="padding:10px; text-align:left;">
+                                Producto
+                            </th>
+
+                            <th style="padding:10px; text-align:right;">
+                                Precio
+                            </th>
+
+                            <th style="padding:10px; text-align:right;">
+                                Importe
+                            </th>
+
+                        </tr>
+
+                        ${venta.productos.map(function(producto){
+
+                            let importe =
+                                Number(producto.precio) *
+                                Number(producto.cantidad);
+
+                            return `
+                                <tr>
+
+                                    <td style="
+                                        padding:8px;
+                                        border-bottom:1px solid #ddd;
+                                    ">
+                                        ${producto.cantidad}
+                                    </td>
+
+                                    <td style="
+                                        padding:8px;
+                                        border-bottom:1px solid #ddd;
+                                    ">
+                                        ${producto.nombre}
+                                    </td>
+
+                                    <td style="
+                                        padding:8px;
+                                        text-align:right;
+                                        border-bottom:1px solid #ddd;
+                                    ">
+                                        $${Number(producto.precio).toFixed(2)}
+                                    </td>
+
+                                    <td style="
+                                        padding:8px;
+                                        text-align:right;
+                                        border-bottom:1px solid #ddd;
+                                        font-weight:bold;
+                                    ">
+                                        $${importe.toFixed(2)}
+                                    </td>
+
+                                </tr>
+                            `;
+
+                        }).join("")}
+
+                    </table>
+
+                </div>
+            `;
+
+        }
+
+        lista.innerHTML += `
+
+            <div style="
+                max-width:800px;
+                margin:15px auto;
+                padding:20px;
+                background:white;
+                border-radius:12px;
+                box-shadow:0 2px 8px rgba(0,0,0,.15);
+            ">
+
+                <h3 style="
+                    margin-top:0;
+                    font-size:22px;
+                ">
+                    🧾 Venta #${indice + 1}
+                </h3>
+
+                <p>
+                    👤 Cliente:
+                    <strong>${venta.cliente}</strong>
+                </p>
+
+                <p>
+                    📱 WhatsApp:
+                    <strong>
+                        ${venta.whatsapp || "No registrado"}
+                    </strong>
+                </p>
+
+                <p>
+                    📅 Fecha:
+                    <strong>
+                        ${venta.fecha || "Sin fecha"}
+                    </strong>
+                </p>
+
+                ${productosHTML}
+
+                <h2 style="
+                    text-align:right;
+                    color:#d32f2f;
+                    margin-top:20px;
+                ">
+                    TOTAL:
+                    $${Number(venta.total).toFixed(2)}
+                </h2>
+
+                <div style="
+                    display:flex;
+                    gap:10px;
+                    justify-content:center;
+                    flex-wrap:wrap;
+                    margin-top:20px;
+                ">
+
+                    <button
+                        onclick="verTicketVenta(${indice})"
+                        style="
+                            padding:10px 18px;
+                            font-size:16px;
+                            cursor:pointer;
+                        ">
+                        📄 Ver ticket
+                    </button>
+
+                    <button
+                        onclick="imprimirVenta(${indice})"
+                        style="
+                            padding:10px 18px;
+                            font-size:16px;
+                            cursor:pointer;
+                        ">
+                        🖨️ Imprimir
+                    </button>
+
+                    <button
+                        onclick="eliminarVenta(${indice})"
+                        style="
+                            padding:10px 18px;
+                            font-size:16px;
+                            cursor:pointer;
+                            background:#d32f2f;
+                            color:white;
+                            border:none;
+                            border-radius:5px;
+                        ">
+                        🗑️ Eliminar
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+
+// =========================
+//       VER TICKET
+// =========================
+
+function verTicketVenta(indice){
+
+    let ventas =
+        JSON.parse(localStorage.getItem("ventasCODMAR")) || [];
+
+    let venta = ventas[indice];
+
+    if(!venta){
+
+        alert("No se encontró la venta.");
+
+        return;
+
+    }
+
+
+    let productosHTML = "";
+
+
+    if(venta.productos && venta.productos.length > 0){
+
+        venta.productos.forEach(function(producto){
+
+            let importe =
+                Number(producto.precio) *
+                Number(producto.cantidad);
+
+
+            productosHTML += `
+
+                <tr>
+
+                    <td>
+                        ${producto.cantidad}
+                    </td>
+
+                    <td>
+                        ${producto.nombre}
+                    </td>
+
+                    <td>
+                        $${Number(producto.precio).toFixed(2)}
+                    </td>
+
+                    <td>
+                        $${importe.toFixed(2)}
+                    </td>
+
+                </tr>
+
+            `;
+
+        });
+
+    }else{
+
+        productosHTML = `
+
+            <tr>
+
+                <td colspan="4">
+                    No hay productos registrados.
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+
+    let ventana = window.open("", "_blank");
+
+
+    if(!ventana){
+
+        alert(
+            "El navegador bloqueó la ventana del ticket. " +
+            "Permite las ventanas emergentes para este sitio."
+        );
+
+        return;
+
+    }
+
+
+    ventana.document.write(`
+
+        <!DOCTYPE html>
+
+        <html>
+
+        <head>
+
+            <title>
+                Ticket CODMAR
+            </title>
+
+
+            <style>
+
+                body{
+
+                    font-family:Arial,sans-serif;
+
+                    padding:30px;
+
+                    max-width:800px;
+
+                    margin:auto;
+
+                }
+
+
+                h1{
+
+                    text-align:center;
+
+                    margin-bottom:5px;
+
+                }
+
+
+                h2{
+
+                    text-align:center;
+
+                    font-size:20px;
+
+                    margin-top:0;
+
+                }
+
+
+                .datos{
+
+                    margin-top:20px;
+
+                    font-size:17px;
+
+                }
+
+
+                table{
+
+                    width:100%;
+
+                    border-collapse:collapse;
+
+                    margin-top:25px;
+
+                }
+
+
+                th,td{
+
+                    padding:10px;
+
+                    border-bottom:1px solid #ccc;
+
+                    text-align:left;
+
+                }
+
+
+                th{
+
+                    background:#1976d2;
+
+                    color:white;
+
+                }
+
+
+                .derecha{
+
+                    text-align:right;
+
+                }
+
+
+                .total{
+
+                    text-align:right;
+
+                    font-size:24px;
+
+                    font-weight:bold;
+
+                    color:#d32f2f;
+
+                    margin-top:25px;
+
+                }
+
+
+                .botones{
+
+                    display:flex;
+
+                    justify-content:center;
+
+                    gap:15px;
+
+                    margin-top:35px;
+
+                }
+
+
+                button{
+
+                    padding:12px 20px;
+
+                    font-size:16px;
+
+                    cursor:pointer;
+
+                    border:none;
+
+                    border-radius:6px;
+
+                }
+
+
+                .imprimir{
+
+                    background:#1976d2;
+
+                    color:white;
+
+                }
+
+
+                .volver{
+
+                    background:#777;
+
+                    color:white;
+
+                }
+
+
+                @media print{
+
+                    .botones{
+
+                        display:none;
+
+                    }
+
+                    body{
+
+                        padding:0;
+
+                    }
+
+                }
+
+            </style>
+
+        </head>
+
+
+        <body>
+
+
+            <h1>
+                CODMAR
+            </h1>
+
+
+            <h2>
+                Distribuidora Farmacéutica y Comercializadora
+            </h2>
+
+
+            <hr>
+
+
+            <div class="datos">
+
+                <p>
+
+                    <strong>
+                        Venta:
+                    </strong>
+
+                    #${indice + 1}
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Cliente:
+                    </strong>
+
+                    ${venta.cliente}
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        WhatsApp:
+                    </strong>
+
+                    ${venta.whatsapp || "No registrado"}
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Fecha:
+                    </strong>
+
+                    ${venta.fecha || "Sin fecha"}
+
+                </p>
+
+            </div>
+
+
+            <table>
+
+                <tr>
+
+                    <th>
+                        Cant.
+                    </th>
+
+                    <th>
+                        Producto
+                    </th>
+
+                    <th>
+                        Precio
+                    </th>
+
+                    <th>
+                        Importe
+                    </th>
+
+                </tr>
+
+
+                ${productosHTML}
+
+            </table>
+
+
+            <div class="total">
+
+                TOTAL:
+                $${Number(venta.total).toFixed(2)}
+
+            </div>
+
+
+            <div class="botones">
+
+                <button
+                    class="imprimir"
+                    onclick="window.print()">
+
+                    🖨️ Imprimir
+
+                </button>
+
+
+                <button
+                    class="volver"
+                    onclick="window.close()">
+
+                    ⬅️ Volver a Ventas
+
+                </button>
+
+            </div>
+
+
+        </body>
+
+        </html>
+
+    `);
+
+
+    ventana.document.close();
+
+}
+
+// =========================
+//     IMPRIMIR 2 TICKETS
+// =========================
+
+function imprimirVenta(indice){
+
+    let ventas =
+        JSON.parse(localStorage.getItem("ventasCODMAR")) || [];
+
+    let venta = ventas[indice];
+
+    if(!venta){
+
+        alert("No se encontró la venta.");
+
+        return;
+
+    }
+
+
+    let productosHTML = "";
+
+
+    if(venta.productos && venta.productos.length > 0){
+
+        venta.productos.forEach(function(producto){
+
+            let importe =
+                Number(producto.precio) *
+                Number(producto.cantidad);
+
+
+            productosHTML += `
+
+                <div class="producto">
+
+                    <div class="linea">
+
+                        <span>
+                            ${producto.cantidad} x ${producto.nombre}
+                        </span>
+
+                    </div>
+
+                    <div class="linea">
+
+                        <span>
+                            $${Number(producto.precio).toFixed(2)}
+                        </span>
+
+                        <strong>
+                            $${importe.toFixed(2)}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    }
+
+
+    let ticket = function(tipo){
+
+        return `
+
+            <div class="ticket">
+
+                <div class="centro">
+
+                    <strong>CODMAR</strong>
+
+                    <br>
+
+                    Distribuidora Farmacéutica
+                    <br>
+                    y Comercializadora
+
+                </div>
+
+
+                <div class="separador">
+                    ------------------------------
+                </div>
+
+
+                <div>
+                    <strong>
+                        ${tipo}
+                    </strong>
+                </div>
+
+
+                <div class="datos">
+
+                    Cliente:
+                    ${venta.cliente}
+
+                    <br>
+
+                    Fecha:
+                    ${venta.fecha || "Sin fecha"}
+
+                </div>
+
+
+                <div class="separador">
+                    ------------------------------
+                </div>
+
+
+                ${productosHTML}
+
+
+                <div class="separador">
+                    ------------------------------
+                </div>
+
+
+                <div class="total">
+
+                    TOTAL:
+                    $${Number(venta.total).toFixed(2)}
+
+                </div>
+
+
+                <div class="separador">
+                    ------------------------------
+                </div>
+
+
+                <div class="centro">
+
+                    Gracias por su compra
+
+                </div>
+
+            </div>
+
+        `;
+
+    };
+
+
+    let ventana = window.open("", "_blank");
+
+
+    if(!ventana){
+
+        alert(
+            "El navegador bloqueó la ventana de impresión."
+        );
+
+        return;
+
+    }
+
+
+    ventana.document.write(`
+
+        <!DOCTYPE html>
+
+        <html>
+
+        <head>
+
+            <title>
+                Tickets CODMAR
+            </title>
+
+
+            <style>
+
+                @page{
+
+                    size:58mm auto;
+
+                    margin:0;
+
+                }
+
+
+                *{
+
+                    box-sizing:border-box;
+
+                }
+
+
+                body{
+
+                    margin:0;
+
+                    padding:0;
+
+                    width:58mm;
+
+                    font-family:Arial,sans-serif;
+
+                    font-size:11px;
+
+                }
+
+
+                .ticket{
+
+                    width:48mm;
+
+                    margin:0 auto;
+
+                    padding:4mm 0;
+
+                    page-break-after:always;
+
+                }
+
+
+                .ticket:last-child{
+
+                    page-break-after:auto;
+
+                }
+
+
+                .centro{
+
+                    text-align:center;
+
+                    line-height:1.4;
+
+                }
+
+
+                .datos{
+
+                    margin-top:5px;
+
+                    line-height:1.5;
+
+                    word-wrap:break-word;
+
+                }
+
+
+                .separador{
+
+                    text-align:center;
+
+                    overflow:hidden;
+
+                    white-space:nowrap;
+
+                    margin:4px 0;
+
+                }
+
+
+                .producto{
+
+                    margin:4px 0;
+
+                    line-height:1.35;
+
+                }
+
+
+                .linea{
+
+                    display:flex;
+
+                    justify-content:space-between;
+
+                    gap:5px;
+
+                }
+
+
+                .linea span:first-child{
+
+                    overflow-wrap:anywhere;
+
+                }
+
+
+                .total{
+
+                    text-align:right;
+
+                    font-size:15px;
+
+                    font-weight:bold;
+
+                    margin-top:6px;
+
+                }
+
+
+                @media print{
+
+                    .ticket{
+
+                        page-break-after:always;
+
+                    }
+
+                    .ticket:last-child{
+
+                        page-break-after:auto;
+
+                    }
+
+                }
+
+            </style>
+
+        </head>
+
+
+        <body>
+
+
+            ${ticket("COPIA DEL CLIENTE")}
+
+
+            ${ticket("COPIA CODMAR")}
+
+
+        </body>
+
+        </html>
+
+    `);
+
+
+    ventana.document.close();
+
+
+    ventana.onload = function(){
+
+        ventana.focus();
+
+        ventana.print();
+
+    };
+
+}
+
+// =========================
+//       ELIMINAR VENTA
+// =========================
+
+
+function eliminarVenta(indice){
+
+    let ventas =
+        JSON.parse(localStorage.getItem("ventasCODMAR")) || [];
+
+    let venta = ventas[indice];
+
+    if(!venta){
+        return;
+    }
+
+    let confirmar = confirm(
+        "¿Quieres eliminar la Venta #" +
+        (indice + 1) +
+        " de " +
+        venta.cliente +
+        "?"
+    );
+
+    if(!confirmar){
+        return;
+    }
+
+    ventas.splice(indice, 1);
+
+    localStorage.setItem(
+        "ventasCODMAR",
+        JSON.stringify(ventas)
+    );
+
+    mostrarVentas();
+
+}
+
+function volverDesdeVentas(){
+
+    // Ocultar Ventas
+    document.getElementById("paginaVentas").style.display = "none";
+
+    // Mostrar Administración
+    document.getElementById("paginaAdministracion").style.display = "block";
+
+    // Mantener ocultos los elementos del catálogo
+    document.querySelector(".categorias").style.display = "none";
+
+    document.getElementById("buscar").style.display = "none";
+
+    document.getElementById("verCarrito").style.display = "none";
+
+}
+
+
+function volverDesdeAdministracion(){
+
+    // Ocultar Administración
+    document.getElementById("paginaAdministracion").style.display = "none";
+
+    // Ocultar Clientes
+    document.getElementById("paginaClientes").style.display = "none";
+
+    // Ocultar Agregar Producto
+    document.getElementById("paginaAgregarProducto").style.display = "none";
+
+    // Ocultar Ventas
+    document.getElementById("paginaVentas").style.display = "none";
+
+    // Ocultar Carrito
+    document.getElementById("paginaCarrito").style.display = "none";
+
+    // Mostrar catálogo
+    document.getElementById("catalogo").style.display = "block";
+
+    // Mostrar categorías
+    document.querySelector(".categorias").style.display = "flex";
+
+    // Mostrar búsqueda
+    document.getElementById("buscar").style.display = "block";
+
+    // Mostrar botón del carrito
+    document.getElementById("verCarrito").style.display = "block";
+
+}
+
+
+
+
+// =========================
+//   ENVIAR PEDIDO WHATSAPP
+// =========================
+
+function enviarWhatsApp(){
+
+    if(carrito.length === 0){
+        alert("El carrito está vacío.");
+        return;
+    }
+
+    let clienteSeleccionado =
+        JSON.parse(
+            localStorage.getItem("clienteSeleccionadoCODMAR")
+        );
+
+    if(!clienteSeleccionado){
+        alert("Primero selecciona un cliente.");
+        return;
+    }
+
+    let mensaje = "";
+
+    mensaje += "*CODMAR*\n";
+    mensaje +=
+        "Distribuidora Farmacéutica y Comercializadora\n\n";
+
+    mensaje +=
+        "Cliente: " +
+        clienteSeleccionado.nombre +
+        "\n\n";
+
+    mensaje +=
+        "Cant  Artículo              P.Unit      Importe\n";
+
+    mensaje +=
+        "----------------------------------------------------\n";
+
+    let total = 0;
+
+
+    // =========================
+    //      CREAR TICKET
+    // =========================
+
+    carrito.forEach(function(producto){
+
+        let subtotal =
+            producto.precio * producto.cantidad;
+
+        let cantidad =
+            String(producto.cantidad).padEnd(5);
+
+        let articulo =
+            producto.nombre
+            .substring(0,22)
+            .padEnd(22);
+
+        let precioUnitario =
+            "$" +
+            producto.precio.toLocaleString("es-MX",{
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            });
+
+        let importe =
+            "$" +
+            subtotal.toLocaleString("es-MX",{
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            });
+
+        mensaje +=
+            cantidad +
+            articulo +
+            precioUnitario.padStart(10) +
+            importe.padStart(12) +
+            "\n";
+
+        total += subtotal;
+
+    });
+
+
+
+
+
+
+    // =========================
+    //       GUARDAR VENTA
+    // =========================
+
+    let ventas =
+        JSON.parse(
+            localStorage.getItem("ventasCODMAR")
+        ) || [];
+
+    ventas.push({
+
+        cliente:
+            clienteSeleccionado.nombre,
+
+        whatsapp:
+            clienteSeleccionado.whatsapp,
+
+        total:
+            total,
+
+        fecha:
+            new Date().toLocaleString("es-MX"),
+
+        productos:
+            carrito.map(function(producto){
+
+                return {
+
+                    nombre:
+                        producto.nombre,
+
+                    precio:
+                        producto.precio,
+
+                    cantidad:
+                        producto.cantidad
+
+                };
+
+            })
+
+    });
+
+
+    localStorage.setItem(
+        "ventasCODMAR",
+        JSON.stringify(ventas)
+    );
+
+
+    // =========================
+    //       TOTAL DEL TICKET
+    // =========================
+
+    mensaje +=
+        "----------------------------------------------------\n";
+
+    mensaje +=
+        "TOTAL: $" +
+        total.toLocaleString("es-MX",{
+            minimumFractionDigits:2,
+            maximumFractionDigits:2
+        }) +
+        "\n";
+
+
+    // =========================
+    //       ABRIR WHATSAPP
+    // =========================
+
+    let enlaceWhatsApp =
+        "https://wa.me/?text=" +
+        encodeURIComponent(mensaje);
+
+    console.log(mensaje);
+    console.log(enlaceWhatsApp);
+
+    window.open(
+        enlaceWhatsApp,
+        "_blank"
+    );
+
+
+// =========================
+//       LIMPIAR CARRITO
+// =========================
+
+carrito = [];
+
+localStorage.removeItem("carritoCODMAR");
+
+localStorage.removeItem("clienteSeleccionadoCODMAR");
+
+actualizarCarrito();
+
+}
+
+
+// =========================
+//       CARGAR CSV
+// =========================
+
+
+fetch("productos.csv")
+
+
+.then(respuesta => respuesta.text())
+
+
+.then(datos => {
+
+
+
+const filas = datos.split("\n");
+
+
+const catalogo = document.getElementById("catalogo");
+
+
+const buscar = document.getElementById("buscar");
+
+
+const volverCatalogo = document.getElementById("volverCatalogo");
+
+window.productos = [];
+
+// =========================
+// CARGAR PRODUCTOS DEL CSV
+// =========================
+
+for(let i = 1; i < filas.length; i++){
+
+    let linea = filas[i].trim();
+
+    if(!linea){
+        continue;
+    }
+
+    let columnas = [];
+    let actual = "";
+    let dentroComillas = false;
+
+    for(let j = 0; j < linea.length; j++){
+
+        let caracter = linea[j];
+
+        if(caracter === '"'){
+
+            dentroComillas = !dentroComillas;
+
+        }else if(caracter === "," && !dentroComillas){
+
+            columnas.push(actual.trim());
+            actual = "";
+
+        }else{
+
+            actual += caracter;
+
+        }
+
+    }
+
+    columnas.push(actual.trim());
+
+    if(columnas.length >= 4){
+
+        window.productos.push({
+
+            imagen: columnas[0].replace(/^"|"$/g, "").trim(),
+
+            nombre: columnas[1].replace(/^"|"$/g, "").trim(),
+
+            precio: columnas[2].replace(/^"|"$/g, "").trim(),
+
+            categoria: columnas[3].replace(/^"|"$/g, "").trim()
+
+        });
+
+    }
+
+}
+
+// =========================
+// AGREGAR PRODUCTOS NUEVOS
+// GUARDADOS EN LOCALSTORAGE
+// =========================
+
+let productosGuardados =
+    JSON.parse(
+        localStorage.getItem("productosCODMAR")
+    ) || [];
+
+
+// Agregar los productos nuevos
+window.productos =
+    window.productos.concat(productosGuardados);
+
+
+// =========================
+// ORDEN ALFABÉTICO
+// =========================
+
+window.productos.sort(function(a, b){
+
+    return a.nombre.localeCompare(
+        b.nombre,
+        "es",
+        {
+            sensitivity: "base"
+        }
+    );
+
+});
+
+
+function mostrarProductos(lista){
+
+    catalogo.innerHTML = "";
+
+    // =========================
+    // ORDEN ALFABÉTICO
+    // =========================
+
+    lista.sort(function(a, b){
+
+        return a.nombre.localeCompare(
+            b.nombre,
+            "es",
+            { sensitivity: "base" }
+        );
+
+    });
+
+
+    lista.forEach(producto => {
+
+        // =========================
+        // DETERMINAR RUTA DE IMAGEN
+        // =========================
+
+        let rutaImagen = producto.imagen;
+
+        if(
+            !rutaImagen.startsWith("data:image") &&
+            !rutaImagen.startsWith("http")
+        ){
+
+            rutaImagen = "imagenes/" + rutaImagen;
+
+        }
+
+
+        // =========================
+        // MOSTRAR PRODUCTO
+        // =========================
+
+        catalogo.innerHTML += `
+
+        <div class="producto">
+
+            <img
+                src="${rutaImagen}"
+                onclick="abrirProducto(
+                    '${rutaImagen}',
+                    '${producto.nombre}',
+                    '${producto.precio}'
+                )"
+                style="cursor:pointer;"
+            >
+
+            <h3>
+                ${producto.nombre}
+            </h3>
+
+            <p>
+                <strong>
+                   $${parseFloat(String(producto.precio).replace("$","").trim()).toFixed(2)}
+                </strong>
+            </p>
+
+            <button
+                class="boton-carrito"
+                onclick="agregarCarrito(
+                    '${producto.nombre}',
+                    '${producto.precio}',
+                    '${rutaImagen}'
+                )"
+            >
+
+                ➕ Agregar al carrito
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+
+
+mostrarProductos(
+    window.productos.filter(function(producto){
+        return producto.categoria.toLowerCase().includes("medicamentos");
+    })
+);
+
+actualizarCarrito();
+
+
+
+
+// Mostrar Medicamentos
+
+window.mostrarMedicamentos = function(){
+
+    let medicamentos = window.productos.filter(function(producto){
+
+        return producto.categoria.toLowerCase().includes("medicamentos");
+
+    });
+
+    mostrarProductos(medicamentos);
+
+};
+
+
+
+
+// Mostrar Material de Curación
+
+
+
+window.mostrarMaterial = function(){
+
+    let material = window.productos.filter(function(producto){
+
+        return producto.categoria.toLowerCase().includes("material");
+
+    });
+
+    mostrarProductos(material);
+
+};
+
+
+
+// Mostrar Perfumería
+
+window.mostrarPerfumeria = function(){
+
+    let perfumeria = window.productos.filter(function(producto){
+
+        return producto.categoria.toLowerCase().includes("perfumeria");
+
+    });
+
+    mostrarProductos(perfumeria);
+
+};   
+
+
+
+// Mostrar Misceláneos
+
+window.mostrarMiscelaneos = function(){
+
+    let miscelaneos = window.productos.filter(function(producto){
+
+        return producto.categoria.toLowerCase().includes("miscelaneos");
+
+    });
+
+    mostrarProductos(miscelaneos);
+
+};
+
+
+
+
+window.mostrarSimilares = function(){
+
+    alert("Similares en construcción");
+
+};
+
+
+window.mostrarPatente = function(){
+
+    alert("Patente en construcción");
+
+};
+
+
+
+
+
+// Buscador
+
+
+buscar.addEventListener("keyup", function () {
+
+    let texto = buscar.value.toLowerCase();
+
+    let filtrados = productos.filter(function(producto){
+
+        return producto.nombre.toLowerCase().includes(texto);
+
+    });
+
+    mostrarProductos(filtrados);
+
+    if(texto !== ""){
+        volverCatalogo.style.display = "block";
+    }else{
+        volverCatalogo.style.display = "none";
+    }
+
+});
+
+
+volverCatalogo.addEventListener("click", function(){
+
+    buscar.value = "";
+
+    mostrarMedicamentos();
+
+    volverCatalogo.style.display = "none";
+
+});
+
+// =========================
+//      BOTONES CARRITO
+// =========================
+
+     document.getElementById("enviarWhatsAppPagina")?.addEventListener("click", enviarWhatsApp);
+
+     document.getElementById("vaciarCarritoPagina")?.addEventListener("click", vaciarCarrito);
+
+     document.getElementById("volverCatalogoPagina")?.addEventListener("click", volverCatalogoCarrito);
+
+
+function volverCatalogoCarrito(){
+
+    document.getElementById("paginaCarrito").style.display = "none";
+
+    document.getElementById("paginaAdministracion").style.display = "none";
+
+    document.getElementById("paginaClientes").style.display = "none";
+
+    document.querySelector(".categorias").style.display = "flex";
+
+    document.getElementById("buscar").style.display = "block";
+
+    document.getElementById("catalogo").style.display = "block";
+
+    document.getElementById("verCarrito").style.display = "block";
+
+}
+
+});
+
+
+// =========================
+//      PÁGINA CLIENTES
+// =========================
+
+function verClientes(){
+
+    document.getElementById("paginaCarrito").style.display = "none";
+
+    document.getElementById("paginaClientes").style.display = "block";
+
+    mostrarClientes();
+
+}
+
+// Volver de Clientes al carrito
+
+document.getElementById("volverCarritoClientes").onclick = function(){
+
+    // Ocultar Clientes
+    document.getElementById("paginaClientes").style.display = "none";
+
+    // Ocultar catálogo
+    document.getElementById("catalogo").style.display = "none";
+
+    // Ocultar categorías
+    document.querySelector(".categorias").style.display = "none";
+
+    // Ocultar búsqueda
+    document.getElementById("buscar").style.display = "none";
+
+    // Ocultar botón carrito
+    document.getElementById("verCarrito").style.display = "none";
+
+    // Mostrar carrito
+    document.getElementById("paginaCarrito").style.display = "block";
+
+    // Volver a dibujar el carrito
+    verCarrito();
+
+};
+
+
+
+// =========================
+//    AGREGAR CLIENTE
+// =========================
+
+document.getElementById("agregarCliente").onclick = function(){
+
+    document.getElementById("formularioCliente").style.display = "block";
+
+};
+
+// =========================
+//      GUARDAR CLIENTE
+// =========================
+
+
+let indiceClienteEditando = null;
+
+document.getElementById("guardarCliente").onclick = function(){
+
+    let nombre =
+        document.getElementById("nombreCliente").value.trim();
+
+    let whatsapp =
+        document.getElementById("whatsappCliente").value.replace(/\D/g, "");
+
+    if(nombre === ""){
+
+        alert("Por favor escribe el nombre del cliente.");
+
+        return;
+    }
+
+    let clientes =
+        JSON.parse(localStorage.getItem("clientesCODMAR")) || [];
+
+let clienteExistente = clientes.find(function(cliente, indice){
+
+    return cliente.nombre.toLowerCase() === nombre.toLowerCase() &&
+           indice !== indiceClienteEditando;
+
+});
+
+if(clienteExistente){
+
+    alert("Este cliente ya está registrado.");
+
+    return;
+}
+
+
+
+
+   let whatsappExistente = clientes.find(function(cliente, indice){
+
+    return cliente.whatsapp === whatsapp &&
+           indice !== indiceClienteEditando;
+
+});
+
+if(whatsappExistente){
+
+    alert("Este número de WhatsApp ya está registrado.");
+
+    return;
+}
+
+
+    // =========================
+   //   AGREGAR O EDITAR
+  // =========================
+
+if(indiceClienteEditando !== null){
+
+    clientes[indiceClienteEditando] = {
+        nombre: nombre,
+        whatsapp: whatsapp
+    };
+
+    indiceClienteEditando = null;
+
+    alert("Cliente actualizado correctamente.");
+
+
+
+}else{
+
+    clientes.push({
+        nombre: nombre,
+        whatsapp: whatsapp
+    });
+
+}
+
+
+// GUARDAR LA LISTA ACTUALIZADA
+
+localStorage.setItem(
+    "clientesCODMAR",
+    JSON.stringify(clientes)
+);
+
+// ACTUALIZAR LA LISTA EN PANTALLA
+
+mostrarClientes();
+
+// OCULTAR FORMULARIO
+
+document.getElementById("formularioCliente").style.display = "none";
+
+// LIMPIAR CAMPOS
+
+document.getElementById("nombreCliente").value = "";
+
+document.getElementById("whatsappCliente").value = "";
+
+};
+
+
+
+// =========================
+//    MOSTRAR CLIENTES
+// =========================
+
+function mostrarClientes(){
+
+    let clientes = JSON.parse(localStorage.getItem("clientesCODMAR")) || [];
+
+    let lista = document.getElementById("listaClientes");
+
+    lista.innerHTML = "";
+
+    if(clientes.length === 0){
+
+        lista.innerHTML =
+        "<p style='text-align:center;'>No hay clientes registrados.</p>";
+
+        return;
+    }
+
+    clientes.forEach(function(cliente, indice){
+
+        lista.innerHTML += `
+
+        <div style="
+            margin:15px auto;
+            padding:15px;
+            max-width:500px;
+            background:white;
+            border-radius:10px;
+            box-shadow:0 2px 8px rgba(0,0,0,.15);
+        ">
+
+            <h3 style="margin:0;">
+                👤 ${cliente.nombre}
+            </h3>
+
+            <p style="margin:8px 0;">
+                📱 ${cliente.whatsapp}
+            </p>
+
+            <button onclick="seleccionarCliente(${indice})"
+                style="
+                    background:#0d6efd;
+                    color:white;
+                    border:none;
+                    border-radius:6px;
+                    padding:8px 15px;
+                    cursor:pointer;
+                    margin-right:8px;
+                ">
+                👤 Seleccionar
+            </button>
+
+
+                    <button onclick="editarCliente(${indice})"
+            style="
+                background:#f0ad4e;
+                color:white;
+                border:none;
+                border-radius:6px;
+                padding:8px 15px;
+                cursor:pointer;
+                margin-right:8px;
+            ">
+            ✏️ Editar
+        </button>
+
+
+            <button onclick="eliminarCliente(${indice})"
+                style="
+                    background:#d32f2f;
+                    color:white;
+                    border:none;
+                    border-radius:6px;
+                    padding:8px 15px;
+                    cursor:pointer;
+                ">
+                🗑️ Eliminar
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+// =========================
+//     ELIMINAR CLIENTE
+// =========================
+
+function eliminarCliente(indice){
+
+    let clientes =
+        JSON.parse(localStorage.getItem("clientesCODMAR")) || [];
+
+    let cliente = clientes[indice];
+
+    if(!cliente){
+        return;
+    }
+
+    let confirmar = confirm(
+        "¿Quieres eliminar a " + cliente.nombre + "?"
+    );
+
+    if(!confirmar){
+        return;
+    }
+
+    clientes.splice(indice, 1);
+
+    localStorage.setItem(
+        "clientesCODMAR",
+        JSON.stringify(clientes)
+    );
+
+    mostrarClientes();
+
+}
+
+
+// =========================
+//      EDITAR CLIENTE
+// =========================
+
+function editarCliente(indice){
+
+    let clientes =
+        JSON.parse(localStorage.getItem("clientesCODMAR")) || [];
+
+    let cliente = clientes[indice];
+
+    if(!cliente){
+        return;
+    }
+
+    indiceClienteEditando = indice;
+
+    document.getElementById("nombreCliente").value =
+        cliente.nombre;
+
+    document.getElementById("whatsappCliente").value =
+        cliente.whatsapp;
+
+    document.getElementById("formularioCliente").style.display =
+        "block";
+
+}
+
+
+// =========================
+//   SELECCIONAR CLIENTE
+// =========================
+
+function seleccionarCliente(indice){
+
+    let clientes =
+        JSON.parse(localStorage.getItem("clientesCODMAR")) || [];
+
+    let cliente = clientes[indice];
+
+    if(!cliente){
+        return;
+    }
+
+    localStorage.setItem(
+        "clienteSeleccionadoCODMAR",
+        JSON.stringify(cliente)
+    );
+
+    alert(
+        "Cliente seleccionado: " + cliente.nombre
+    );
+
+    document.getElementById("paginaClientes").style.display =
+        "none";
+
+    document.getElementById("paginaCarrito").style.display =
+        "block";
+
+    verCarrito();
+
+}
+
+
+
+// =========================
+//    GUARDAR NUEVO PRODUCTO
+// =========================
+
+function guardarNuevoProducto(){
+
+    let nombre =
+        document.getElementById("nuevoProductoNombre").value.trim();
+
+    let presentacion =
+        document.getElementById("nuevoProductoPresentacion").value.trim();
+
+    let precio =
+        document.getElementById("nuevoProductoPrecio").value.trim();
+
+    let categoria =
+        document.getElementById("nuevoProductoCategoria").value;
+
+    let imagenArchivo =
+        document.getElementById("nuevoProductoImagen").files[0];
+
+    let imagenURL =
+        document.getElementById("nuevoProductoImagenURL").value.trim();
+
+
+    // =========================
+    // VALIDACIONES
+    // =========================
+
+    if(nombre === ""){
+
+        alert("Escribe el nombre del producto.");
+        return;
+
+    }
+
+    if(precio === ""){
+
+        alert("Escribe el precio del producto.");
+        return;
+
+    }
+
+    if(categoria === ""){
+
+        alert("Selecciona una categoría.");
+        return;
+
+    }
+
+    if(!imagenArchivo && imagenURL === ""){
+
+        alert(
+            "Selecciona una imagen o proporciona una imagen en línea."
+        );
+
+        return;
+
+    }
+
+
+    // =========================
+    // OBTENER PRODUCTOS
+    // =========================
+
+    let productosGuardados =
+        JSON.parse(
+            localStorage.getItem("productosCODMAR")
+        ) || [];
+
+
+    // =========================
+    // CREAR NOMBRE COMPLETO
+    // =========================
+
+    let nombreCompleto =
+        nombre +
+        (presentacion
+            ? " - " + presentacion
+            : "");
+
+
+    // =========================
+    // FUNCIÓN PARA GUARDAR
+    // =========================
+
+    function guardarProducto(imagen){
+
+        let nuevoProducto = {
+
+            imagen: imagen,
+
+            nombre: nombreCompleto,
+
+            precio: parseFloat(precio),
+
+            categoria: categoria
+
+        };
+
+
+        // =========================
+        // AGREGAR PRODUCTO
+        // =========================
+
+        productosGuardados.push(nuevoProducto);
+
+
+        // =========================
+        // ORDEN ALFABÉTICO
+        // =========================
+
+        productosGuardados.sort(function(a, b){
+
+            return a.nombre.localeCompare(
+                b.nombre,
+                "es",
+                {
+                    sensitivity: "base"
+                }
+            );
+
+        });
+
+
+        // =========================
+        // GUARDAR
+        // =========================
+
+        localStorage.setItem(
+            "productosCODMAR",
+            JSON.stringify(productosGuardados)
+        );
+
+
+        alert("Producto guardado correctamente.");
+
+
+        // =========================
+        // LIMPIAR CAMPOS
+        // =========================
+
+        document.getElementById(
+            "nuevoProductoNombre"
+        ).value = "";
+
+        document.getElementById(
+            "nuevoProductoPresentacion"
+        ).value = "";
+
+        document.getElementById(
+            "nuevoProductoPrecio"
+        ).value = "";
+
+        document.getElementById(
+            "nuevoProductoCategoria"
+        ).value = "";
+
+        document.getElementById(
+            "nuevoProductoImagen"
+        ).value = "";
+
+        document.getElementById(
+            "nuevoProductoImagenURL"
+        ).value = "";
+
+
+        document.getElementById(
+            "vistaPreviaImagen"
+        ).innerHTML = "";
+
+
+        // =========================
+        // VOLVER A ADMINISTRACIÓN
+        // =========================
+
+        document.getElementById(
+            "paginaAgregarProducto"
+        ).style.display = "none";
+
+        document.getElementById(
+            "paginaAdministracion"
+        ).style.display = "block";
+
+
+        // =========================
+        // ACTUALIZAR CATÁLOGO
+        // =========================
+
+        if(typeof mostrarProductos === "function"){
+
+            mostrarProductos(productosGuardados);
+
+        }
+
+    }
+
+
+    // =========================
+    // IMAGEN DESDE INTERNET
+    // =========================
+
+    if(imagenURL !== ""){
+
+        guardarProducto(imagenURL);
+
+        return;
+
+    }
+
+
+    // =========================
+    // IMAGEN DESDE DISPOSITIVO
+    // =========================
+
+    if(imagenArchivo){
+
+        let lector = new FileReader();
+
+
+        lector.onload = function(e){
+
+            guardarProducto(e.target.result);
+
+        };
+
+
+        lector.readAsDataURL(imagenArchivo);
+
+    }
+
+}
+
+
+
+// =========================
+//   CANCELAR AGREGAR PRODUCTO
+// =========================
+
+function cancelarAgregarProducto(){
+
+    // Ocultar Agregar Producto
+    document.getElementById("paginaAgregarProducto").style.display = "none";
+
+    // Mostrar Administración
+    document.getElementById("paginaAdministracion").style.display = "block";
+
+    // Mantener ocultos los elementos del catálogo
+    document.querySelector(".categorias").style.display = "none";
+
+    document.getElementById("buscar").style.display = "none";
+
+    document.getElementById("verCarrito").style.display = "none";
+
+}
+
+
+// =========================
+// DESPLAZAR CATEGORÍAS CON MOUSE
+// =========================
+
+const barraCategorias = document.querySelector(".categorias");
+
+let arrastrandoCategorias = false;
+let inicioX;
+let scrollInicial;
+
+barraCategorias.addEventListener("mousedown", function(e){
+
+    arrastrandoCategorias = true;
+
+    inicioX = e.pageX - barraCategorias.offsetLeft;
+
+    scrollInicial = barraCategorias.scrollLeft;
+
+    barraCategorias.style.cursor = "grabbing";
+
+});
+
+
+barraCategorias.addEventListener("mouseleave", function(){
+
+    arrastrandoCategorias = false;
+
+    barraCategorias.style.cursor = "grab";
+
+});
+
+
+barraCategorias.addEventListener("mouseup", function(){
+
+    arrastrandoCategorias = false;
+
+    barraCategorias.style.cursor = "grab";
+
+});
+
+
+barraCategorias.addEventListener("mousemove", function(e){
+
+    if(!arrastrandoCategorias) return;
+
+    e.preventDefault();
+
+    let x = e.pageX - barraCategorias.offsetLeft;
+
+    let movimiento = (x - inicioX) * 1.5;
+
+    barraCategorias.scrollLeft =
+        scrollInicial - movimiento;
+
+});
+
+
+barraCategorias.style.cursor = "grab";
+
+
+
+
+
+</script>
+
+</body>
+
+</html>
+
+
+
+
+
