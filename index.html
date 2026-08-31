@@ -390,6 +390,55 @@ body {
 
 }
 
+/* ========================= */
+/*   PANEL ADMINISTRACIÓN    */
+/* ========================= */
+
+.panel-administracion {
+    width: 90%;
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+    border: 1px solid #ddd;
+}
+
+.panel-administracion h2 {
+    text-align: center;
+    font-size: 32px;
+    margin: 0 0 30px 0;
+}
+
+.menu-administracion {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menu-administracion button {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 22px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: #0b5ed7;
+    color: white;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.18);
+}
+
+.menu-administracion button:hover {
+    background: #084298;
+    transform: translateY(-1px);
+}
+
+
+
+
+
 
 
 /* CELULAR */
@@ -863,43 +912,48 @@ placeholder="🔍 Buscar producto...">
 
 </div>
 
+
 <!-- ========================= -->
 <!--    PÁGINA ADMINISTRACIÓN  -->
 <!-- ========================= -->
 
 <div id="paginaAdministracion" style="display:none;">
 
-    <h2 style="text-align:center; font-size:32px;">
-       ⚙️ ADMINISTRACIÓN CODMAR
-    </h2>
+    <div class="panel-administracion">
 
-    <div style="text-align:center; margin-top:30px;">
+        <h2>⚙️ ADMINISTRACIÓN CODMAR</h2>
 
-        <button id="botonClientesAdmin" onclick="abrirClientesAdmin()">
-            👥 Clientes
-        </button>
+        <div class="menu-administracion">
 
-        <button id="botonAgregarProductoAdmin" onclick="abrirAgregarProductoAdmin()">
-            ➕ Agregar producto
-        </button>
+            <button id="botonClientesAdmin" onclick="abrirClientesAdmin()">
+                👥 CLIENTES
+            </button>
 
-        <button id="botonVentasAdmin" onclick="abrirVentasAdmin()">
-            🧾 Ventas
-        </button>
+            <button id="botonAgregarProductoAdmin" onclick="abrirAgregarProductoAdmin()">
+                ➕ AGREGAR PRODUCTO
+            </button>
 
-        
-        <button onclick="abrirCarritoDesdeAdministracion()">
-          🛒 Carrito
-        </button>
+            <button id="botonVentasAdmin" onclick="abrirVentasAdmin()">
+                🧾 VENTAS
+            </button>
 
+            <button onclick="abrirCarritoDesdeAdministracion()">
+                🛒 CARRITO
+            </button>
 
-        <button id="volverCatalogoAdmin" onclick="volverDesdeAdministracion()">
-            ⬅ Volver al catálogo
-        </button>
+            <button id="volverCatalogoAdmin" onclick="volverDesdeAdministracion()">
+                ⬅ VOLVER AL CATÁLOGO
+            </button>
+
+        </div>
 
     </div>
 
 </div>
+
+
+
+
 
 <!-- ========================= -->
 <!--       PÁGINA VENTAS       -->
