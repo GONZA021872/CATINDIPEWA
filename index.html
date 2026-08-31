@@ -719,7 +719,6 @@ body {
     ⚙️ Administración
 </button>
 
-
    </div>
 
 
@@ -1086,15 +1085,7 @@ placeholder="🔍 Buscar producto...">
         🛒 Mi carrito
     </h2>
 
-    <div
-        id="clienteSeleccionadoCarrito"
-        style="
-            text-align:center;
-            font-size:22px;
-            font-weight:bold;
-            margin:15px 0;
-        ">
-    </div>
+  
 
     <div id="listaCarritoPagina"></div>
 
@@ -1161,20 +1152,7 @@ placeholder="🔍 Buscar producto...">
             ⬅ Volver al catálogo
         </button>
 
-        <button
-            onclick="abrirAdministracionDesdeCarrito()"
-            style="
-                background:#6f42c1;
-                color:white;
-                border:none;
-                border-radius:8px;
-                padding:15px 20px;
-                font-size:18px;
-                font-weight:bold;
-                cursor:pointer;
-            ">
-            ⚙️ Administración
-        </button>
+      
 
     </div>
 
@@ -1193,51 +1171,40 @@ placeholder="🔍 Buscar producto...">
 // =========================
 
 
-
 // =========================
 //     MODO ADMINISTRADOR
 // =========================
 
-
-
-// =========================
-//     MODO ADMINISTRADOR
-// =========================
-
-
-let modoAdministrador =
-    localStorage.getItem("modoAdministradorCODMAR") === "activo";
-
-if(modoAdministrador){
-
-    document.getElementById("abrirAdministracion").style.display = "flex";
-
-}
-
+let modoAdministrador = false;
 
 function activarAdministrador(){
 
+    // Si el botón Administración ya está visible,
+    // doble clic en CODMAR lo vuelve a ocultar
+    if(modoAdministrador){
+
+        modoAdministrador = false;
+
+        document.getElementById("abrirAdministracion").style.display = "none";
+
+        return;
+    }
+
+    // Si está oculto, pedir contraseña
     let clave = prompt("Contraseña de administrador:");
 
     if(clave === "CODMAR2026"){
 
-        localStorage.setItem(
-            "modoAdministradorCODMAR",
-            "activo"
-        );
+        modoAdministrador = true;
 
-        location.reload();
+        document.getElementById("abrirAdministracion").style.display = "flex";
 
     }else{
 
         alert("Contraseña incorrecta.");
 
     }
-
 }
-
-
-
 
 // =========================
 //       CARRITO
@@ -1573,6 +1540,32 @@ function abrirAdministracion(){
 
 }
 
+
+// =========================
+//      SALIR ADMINISTRACIÓN
+// =========================
+
+
+function salirAdministracion(){
+
+    // Mostrar barra de categorías
+    document.querySelector(".categorias").style.display = "flex";
+
+    // Mostrar barra de búsqueda
+    document.getElementById("buscar").style.display = "block";
+
+    // Mostrar botón carrito
+    document.getElementById("verCarrito").style.display = "block";
+
+    // Mostrar catálogo
+    document.getElementById("catalogo").style.display = "";
+
+    // Ocultar carrito
+    document.getElementById("paginaCarrito").style.display = "none";
+
+    // Ocultar administración
+    document.getElementById("paginaAdministracion").style.display = "none";
+}
 
 // =========================
 //   ABRIR CARRITO DESDE ADMINISTRACIÓN
@@ -2189,9 +2182,9 @@ function verTicketVenta(indice){
         <body>
 
 
-            <h1>
-                CODMAR
-            </h1>
+           <h1 ondblclick="activarAdministrador()">
+               CODMAR
+           </h1>
 
 
             <h2>
@@ -2772,15 +2765,26 @@ function enviarWhatsApp(){
         return;
     }
 
-    let clienteSeleccionado =
-        JSON.parse(
-            localStorage.getItem("clienteSeleccionadoCODMAR")
-        );
+let nombreCliente =
+    localStorage.getItem("nombreClienteCODMAR");
 
-    if(!clienteSeleccionado){
-        alert("Primero selecciona un cliente.");
+if(!nombreCliente){
+
+    nombreCliente =
+        prompt("CLIENTE\nEscribe el nombre de tu negocio:");
+
+    if(!nombreCliente || nombreCliente.trim() === ""){
+        alert("Debes escribir el nombre de tu negocio para enviar el pedido.");
         return;
     }
+
+    nombreCliente = nombreCliente.trim();
+
+    localStorage.setItem(
+        "nombreClienteCODMAR",
+        nombreCliente
+    );
+}
 
     let mensaje = "";
 
@@ -2788,10 +2792,10 @@ function enviarWhatsApp(){
     mensaje +=
         "Distribuidora Farmacéutica y Comercializadora\n\n";
 
-    mensaje +=
-        "Cliente: " +
-        clienteSeleccionado.nombre +
-        "\n\n";
+   mensaje +=
+    "Cliente: " +
+    nombreCliente +
+    "\n\n";
 
     mensaje +=
         "Cant  Artículo              P.Unit      Importe\n";
@@ -2858,16 +2862,17 @@ function enviarWhatsApp(){
             localStorage.getItem("ventasCODMAR")
         ) || [];
 
-    ventas.push({
 
-        cliente:
-            clienteSeleccionado.nombre,
+  ventas.push({
 
-        whatsapp:
-            clienteSeleccionado.whatsapp,
+    cliente:
+        nombreCliente,
 
-        total:
-            total,
+   whatsapp:
+    "",
+
+    total:
+        total,
 
         fecha:
             new Date().toLocaleString("es-MX"),
