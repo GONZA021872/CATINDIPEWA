@@ -392,72 +392,57 @@ body {
 
 
 
-/* ========================= */
-/*      PÁGINA CARRITO        */
-/* ========================= */
-
-.categorias button:hover{
-
-    background:#0b5ed7;
-
-}
-
-
-
 /* CELULAR */
 
 @media (max-width:768px){
 
- .categorias{
-
-    display:flex;
-    flex-direction:row;
-    flex-wrap:nowrap;
-    gap:12px;
-    width:100%;
-    margin:20px auto;
-    padding:25px 10px;
-    overflow-x:auto;
-    overflow-y:hidden;
-    white-space:nowrap;
-    -webkit-overflow-scrolling:touch;
-
-}
-
-
-    .categorias::-webkit-scrollbar{
-
-        display:none;
-
+    .categorias{
+        display:flex;
+        flex-direction:row;
+        flex-wrap:nowrap;
+        gap:12px;
+        width:100%;
+        margin:20px auto;
+        padding:25px 10px;
+        overflow-x:auto;
+        overflow-y:hidden;
+        white-space:nowrap;
+        -webkit-overflow-scrolling:touch;
     }
 
+    .categorias::-webkit-scrollbar{
+        display:none;
+    }
 
     .categorias button{
+        flex:0 0 auto;
+        min-width:200px;
+        height:60px;
+        padding:0 30px;
+        font-size:20px;
+        border-radius:12px;
+        background:#0d6efd;
+        color:white;
+        border:none;
+        font-weight:bold;
+        cursor:pointer;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    }
 
-    flex:0 0 auto;
-    min-width:200px;
-    height:60px;
-    padding:0 30px;
-    font-size:20px;
-    border-radius:12px;
-    background:#0d6efd;
-    color:white;
-    border:none;
-    font-weight:bold;
-    cursor:pointer;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    #abrirAdministracion{
+        flex:0 0 auto;
+        width:40%;
+        min-width:200px;
+        height:100px;
+        padding:12px;
+        font-size:30px;
+        font-weight:bold;
+        border-radius:15px;
+    }
 
 }
-
-#abrirAdministracion{
-    flex:0 0 auto;
-}
-
-}
-
 
 
 /* ========================= */
@@ -716,10 +701,10 @@ body {
     </button>
 
     <button id="abrirAdministracion" onclick="abrirAdministracion()" style="display:none;">
-    ⚙️ Administración
-</button>
+    ⚙️ ADMINISTRACIÓN
+    </button>
 
-   </div>
+    </div>
 
 
 
@@ -885,7 +870,7 @@ placeholder="🔍 Buscar producto...">
 <div id="paginaAdministracion" style="display:none;">
 
     <h2 style="text-align:center; font-size:32px;">
-        ⚙️ ADMINISTRACION CODMAR
+       ⚙️ ADMINISTRACIÓN CODMAR
     </h2>
 
     <div style="text-align:center; margin-top:30px;">
