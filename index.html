@@ -2898,6 +2898,22 @@ if(!nombreCliente){
     nombreCliente +
     "\n\n";
 
+const ahora = new Date();
+
+const fecha = ahora.toLocaleDateString("es-MX");
+
+const hora = ahora.toLocaleTimeString("es-MX", {
+    hour: "2-digit",
+    minute: "2-digit"
+});
+
+mensaje += "Fecha: " + fecha + "\n";
+mensaje += "Hora: " + hora + "\n\n";
+
+
+
+
+
     mensaje +=
         "Cant  Artículo              P.Unit      Importe\n";
 
